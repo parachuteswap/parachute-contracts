@@ -179,7 +179,6 @@ contract MasterChefV2 is Ownable, ReentrancyGuard {
         }
         uint256 multiplier = getMultiplier(pool.lastRewardBlock, block.number);
         uint256 paraReward = multiplier.mul(paraPerBlock).mul(pool.allocPoint).div(totalAllocPoint);
-        para.mint(devaddr, paraReward.div(10));
         para.mint(address(this), paraReward);
         pool.accParaPerShare = pool.accParaPerShare.add(paraReward.mul(1e12).div(lpSupply));
         pool.lastRewardBlock = block.number;
